@@ -20,6 +20,8 @@ import (
 	"runtime"
 	"strings"
 
+	"hash/soong/android"
+
 	"github.com/google/blueprint/proptools"
 )
 
@@ -114,6 +116,9 @@ type variableProperties struct {
 			Static_libs  []string
 			Srcs         []string
 		}
+
+		// include Hashvariables
+		Hash android.Product_variables
 	} `android:"arch_variant"`
 }
 
@@ -230,6 +235,9 @@ type productVariables struct {
 	PgoAdditionalProfileDirs []string `json:",omitempty"`
 
 	VendorVars map[string]map[string]string `json:",omitempty"`
+
+	// include Hash variables
+	Hash android.ProductVariables
 }
 
 func boolPtr(v bool) *bool {
